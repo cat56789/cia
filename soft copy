@@ -1,0 +1,48 @@
+MICROSTACK
+
+apt-get update
+snap install microstack
+
+choose beta code
+
+sudo microstack init --auto --control
+microstack.openstack --version
+sudo snap get microstack config.credentials.keystone-password
+--->login to the dashboard using the password .
+--->in firefox 10.20.20.1
+--->in that instance launch instance  ins name :my_vm -> volume size 10 select cirros -> m1 tiny-> external  ->show error . delete instance 
+Code : 
+exit 
+microstack launch cirros -n my_vm  
+ -----------------------------------------------------------------------------------------------------------------------------------------------
+
+Cinder👇
+sudo apt install -y lvm2 thin-provisioning-tools cinder-volume cinder-api cinder-scheduler tgt
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y openssh-server
+sudo systemctl start ssh
+sudo systemctl enable ssh
+systemctl status ssh
+systemctl is-active ssh
+sudo ss -tulpn | grep ssh
+-----------------------------------------------------------------------------------------------------------------------------------------------
+ Swift👇
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y openssh-server
+sudo systemctl start ssh
+sudo systemctl enable ssh
+systemctl status ssh
+systemctl is-active ssh
+sudo ss -tulpn | grep ssh
+sudo apt install -y swift-account swift-container swift-object xfsprogs rsync
+sudo snap services microstack
+microstack.cinder-api        enabled   active   -
+microstack.cinder-volume     enabled   active   -
+microstack.cinder-scheduler  enabled   active   -
+sudo snap start microstack.cinder-api
+-----------------------------------------------------------------------------------------------------------------------------------------------
+ 
+
+
