@@ -43,6 +43,117 @@ microstack.cinder-volume     enabled   active   -
 microstack.cinder-scheduler  enabled   active   -
 sudo snap start microstack.cinder-api
 -----------------------------------------------------------------------------------------------------------------------------------------------
- 
+Shared environment..👇
+
+Step 1: Create VM (VirtualBox)
+Install VirtualBox
+Create VM → OS: Ubuntu/Linux
+Set RAM: 2 GB, Storage: 20 GB
+Mount Ubuntu ISO and install Ubuntu
+
+Step 2: Create Users
+sudo adduser user1
+sudo adduser user2
+
+Step 3: Install Python
+python3 --version
+sudo apt update
+sudo apt install python3 python3-pip -y
+python3
+print("Hello from Python VM")
+exit()
+
+Step 4: Enable SSH
+sudo apt install openssh-server -y
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo systemctl status ssh
+ip addr show
+ssh user1@<VM-IP>
+python3
+
+Step 5: Shared Project Folder
+sudo mkdir /opt/python_project
+sudo chmod 777 /opt/python_project
+cd /opt/python_project
+nano test.py
+python3 test.py
+
+Step 6: Verification
+SSH into VM
+Run Python
+Access shared folder
+-------------------------------------------------------------------------------------------------------------------
+Ssh key pair.. �
+
+1. Update System Packages
+sudo apt update
+
+2. Install OpenSSH Server
+sudo apt install -y openssh-server
+
+3. Check SSH Service Status
+sudo systemctl status ssh
+
+4. Install SSH Client (optional)
+sudo apt install -y openssh-client
+
+5. Backup SSH Configuration File
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.original
+sudo chmod a-w /etc/ssh/sshd_config.original
+
+6. Edit SSH Configuration
+sudo nano /etc/ssh/sshd_config
+PubkeyAuthentication yes
+PasswordAuthentication yes
+ChallengeResponseAuthentication no
+
+7. Test SSH Configuration
+sudo sshd -t -f /etc/ssh/sshd_config
+
+8. Restart SSH Service
+sudo systemctl restart ssh
+
+9. Generate SSH Key Pair
+ssh-keygen -t ed25519
+10. Copy Public Key to Remote Host
+ssh-copy-id sethu@10.0.2.15
+
+11. Connect to Remote Server
+ssh sethu@10.0.2.15
+
+12. Message is stored here
+sudo nano /etc/issue.net
+
+13. Change PasswordAuthentication setting
+sudo nano /etc/ssh/sshd_config
+PasswordAuthentication No
+
+Firewall Configuration
+1. Install UFW Firewall
+sudo apt install ufw -y
+
+2. Enable UFW
+sudo ufw enable
+
+3. Check Firewall Status
+sudo ufw status
+
+4. Optional: Add Custom SSH Login Message
+sudo nano /etc/issue.net
+
+5. Restart SSH
+sudo systemctl restart ssh
+
+Two-Step Authentication (Google Authenticator)
+1. Install Google Authenticator PAM Module
+sudo apt install libpam-google-authenticator -y
+
+2. Run Google Authenticator Setup
+google-authenticator
+
+3. Restart SSH After Configuration
+sudo systemctl restart ssh
+sudo journalctl -fu ssh.service
 
 
